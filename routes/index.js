@@ -7,5 +7,6 @@ router.get('/', function(req, res, next) {
   res.render('index', { title: 'Express' });
 });
 
-router.get("/create", noteController.shipiChopf)
+router.get("/create", noteController.shipiChopf);
+router.post("/create", noteController.saveNote);
 module.exports = router;
