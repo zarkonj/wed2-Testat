@@ -1,7 +1,7 @@
 var store = require("../services/noteStore.js");
 
-module.exports.shipiChopf = function (req, res) {
-    res.render("note_detail.hbs", { title: "brudi"} );
+module.exports.createNewNote = function (req, res) {
+    res.render("note_detail.hbs", { title: "Note Pro - Create New Note"} );
 }
 
 module.exports.saveNote = function (req, res) {
