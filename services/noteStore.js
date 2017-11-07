@@ -11,7 +11,7 @@ function Note(title, descr, importance, doneuntil, complete) {
 
 function publicAdd(title, descr, importance, doneuntil, complete, callback)
 {
-    var note = new Note(title, descr, importance, complete);
+    var note = new Note(title, descr, importance, doneuntil, complete);
     db.insert(note, function(err, newDoc){
         if(callback){
             callback(err, newDoc);
@@ -19,7 +19,7 @@ function publicAdd(title, descr, importance, doneuntil, complete, callback)
     });
 }
 
-function publicGet(title, descr, importance, complete, doneuntil, callback)
+function publicGet(title, descr, importance, doneuntil, complete, callback)
 {
     db.find({}, function(err, newDoc){
         callback( err, newDoc);
