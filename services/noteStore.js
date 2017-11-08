@@ -17,13 +17,12 @@ function publicAdd(title, descr, importance, doneuntil, complete, callback)
             callback(err, newDoc);
         }
     });
+
 }
 
-function publicGet(title, descr, importance, doneuntil, complete, callback)
-{
-    db.find({}, function(err, newDoc){
-        callback( err, newDoc);
+function publicAll(callback) {
+    db.find({}, function (err, newDoc) {
+       callback(err, newDoc);
     });
 }
-
-module.exports = {add : publicAdd, get : publicGet};
+module.exports = {add : publicAdd, all : publicAll};

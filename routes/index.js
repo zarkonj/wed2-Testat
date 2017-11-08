@@ -9,4 +9,5 @@ router.get('/', function(req, res, next) {
 
 router.get("/create", noteController.createNewNote);
 router.post("/create", noteController.saveNote);
+router.get("/showNotes", noteController.printNote);
 module.exports = router;

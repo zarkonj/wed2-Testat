@@ -1,0 +1,10 @@
+<html>
+    <h1>Alle Notizen</h1>
+    {{#each note}}
+        <p>Titel: {{this.title}} <br></p>
+        <p>Beschreibung:{{this.descr}} <br></p>
+        <p>Wichtigkeit: {{this.importance}} <br></p>
+        <p>Erledigt bis: {{this.doneuntil}} <br></p>
+        <p>Complete: {{this.complete}} <br><br><br></p>
+    {{/each}}
+</html>
