@@ -3,11 +3,14 @@ var noteController = require('../controller/noteController');
 var router = express.Router();
 
 /* GET home page. */
-router.get('/', function(req, res, next) {
-  res.render('index', { title: 'Note Pro' });
+router.get('/', noteController.sortNote, function(req, res, next) {
+  res.render('showNotes', { title: 'Note Pro' });
 });
 
 router.get("/create", noteController.createNewNote);
 router.post("/create", noteController.saveNote);
-router.get("/showNotes", noteController.printNote);
+router.get("/showNotes", noteController.sortNote);
+router.get("/editNote", noteController.editNote);
+router.post("/editNote", noteController.updateNote);
+router.get("/deleteNote", noteController.deleteNote);
 module.exports = router;

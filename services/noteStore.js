@@ -25,4 +25,38 @@ function publicAll(callback) {
        callback(err, newDoc);
     });
 }
-module.exports = {add : publicAdd, all : publicAll};
+
+function sortImportance(callback) {
+    db.find({}).sort({importance: 1}).exec(function (err, newDoc) {
+        callback(err, newDoc);
+    });
+}
+
+function sortDate(callback) {
+    db.find({}).sort({doneuntil: 1}).exec(function (err, newDoc) {
+        callback(err, newDoc);
+    });
+}
+
+function readNote(noteID, callback) {
+    db.findOne({_id: noteID}, function (err, newDoc) {
+        if(callback) {
+            callback(err, newDoc);
+        }
+    });
+}
+
+function updateNote(noteID, title, descr, importance, doneuntil, complete, callback){
+    db.update({_id: noteID},{$set: {title: title, descr: descr, importance: importance, doneuntil: doneuntil, complete: complete}}, function (err, newDoc){
+        if(callback) {
+            callback(err, newDoc);
+        }
+    });
+}
+
+function deleteNote(noteID, callback) {
+    db.remove({_id: noteID}, {}, function (err){
+        callback(err);
+    });
+}
+module.exports = {add : publicAdd, all : publicAll, sortImp : sortImportance, sortDat : sortDate, read : readNote, update : updateNote, delete : deleteNote};

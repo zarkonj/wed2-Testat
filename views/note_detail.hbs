@@ -7,7 +7,7 @@
                 Importance: <input type="number" name="importance" min="1" max="5" value="{{note.importance}}"><br><br>
                 Done until: <input type="date" name="doneuntil" value="{{note.doneuntil}}"><br><br>
                 <input type="checkbox" name="complete" {{#if note.complete}} checked {{/if}}> Complete<br><br>
-                <input type="submit" value="Create Note">
+                <input type="submit" value="Update Note">
                 <input type="button" id="abort" value="Abort">
             </form>
     {{else}}
