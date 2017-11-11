@@ -10,21 +10,49 @@
         <input type="hidden" id="sortImportanceHidden" name="sortBy" value="doneuntil">
         <input type="submit" id="sortImportance" value="Sort by Date">
     </form>
-    {{#each note}}
-        <div>
-            <p>Titel: {{this.title}} </p>
-            <textarea rows="4" columns="20">{{this.descr}} </textarea>
-            <p>Wichtigkeit: {{this.importance}} <br></p>
-            <p>Erledigt bis: {{this.doneuntil}} <br></p>
-            <input type="checkbox" name="complete" {{#if this.complete}} checked {{/if}}> Complete<br><br>
-            <form method="get" action="/editNote">
-                <input type="hidden" name="noteID" value="{{this._id}}">
-                <input type="submit" value="Notiz ändern">
-            </form>
-            <form method="get" action="/deleteNote">
-                <input type="hidden" name="noteID" value="{{this._id}}">
-                <input type="submit" value="Notiz löschen">
-            </form>
-        </div>
-    {{/each}}
+    <br>
+    <form method="get" action="/hidingNotes">
+        <input type="hidden" name="hideNotes" value="true">
+        <input type="submit" value="Fertige verbergen">
+    </form>
+    {{#if hide}}
+        {{#each note}}
+            {{#if this.complete}}
+            {{else}}
+                <div>
+                    <p>Titel: {{this.title}} </p>
+                    <textarea rows="4" columns="20">{{this.descr}} </textarea>
+                    <p>Wichtigkeit: {{this.importance}} <br></p>
+                    <p>Erledigt bis: {{this.doneuntil}} <br></p>
+                    <input type="checkbox" name="complete" {{#if this.complete}} checked {{/if}}> Complete<br><br>
+                    <form method="get" action="/editNote">
+                        <input type="hidden" name="noteID" value="{{this._id}}">
+                        <input type="submit" value="Notiz ändern">
+                    </form>
+                    <form method="get" action="/deleteNote">
+                        <input type="hidden" name="noteID" value="{{this._id}}">
+                        <input type="submit" value="Notiz löschen">
+                    </form>
+                </div>
+            {{/if}}
+        {{/each}}
+    {{else}}
+        {{#each note}}
+            <div>
+                <p>Titel: {{this.title}} </p>
+                <textarea rows="4" columns="20">{{this.descr}} </textarea>
+                <p>Wichtigkeit: {{this.importance}} <br></p>
+                <p>Erledigt bis: {{this.doneuntil}} <br></p>
+                <input type="checkbox" name="complete" {{#if this.complete}} checked {{/if}}> Complete<br><br>
+                <form method="get" action="/editNote">
+                    <input type="hidden" name="noteID" value="{{this._id}}">
+                    <input type="submit" value="Notiz ändern">
+                </form>
+                <form method="get" action="/deleteNote">
+                    <input type="hidden" name="noteID" value="{{this._id}}">
+                    <input type="submit" value="Notiz löschen">
+                </form>
+            </div>
+        {{/each}}
+    {{/if}}
 </html>
