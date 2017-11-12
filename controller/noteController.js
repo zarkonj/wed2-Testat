@@ -1,7 +1,7 @@
 var store = require("../services/noteStore.js");
 
 module.exports.createNewNote = function (req, res) {
-    res.render("note_detail.hbs", { title: "Note Pro - Create New Note"} );
+    res.render("note_detail.hbs", { title: "Create New Note"} );
 }
 
 module.exports.saveNote = function (req, res) {
@@ -36,7 +36,7 @@ module.exports.sortNote = function (req, res) {
 
 module.exports.editNote = function (req, res) {
     store.read(req.query.noteID, function (err, data) {
-        res.render("note_detail.hbs", { note: data });
+        res.render("note_detail.hbs", { title: "Change Note", note: data });
         console.log(data);
     });
 }

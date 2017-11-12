@@ -4,7 +4,7 @@ var router = express.Router();
 
 /* GET home page. */
 router.get('/', noteController.sortNote, function(req, res, next) {
-  res.render('showNotes', { title: 'Note Pro' });
+  res.render('showNotes', { title: "Note Pro" });
 });
 
 router.get("/create", noteController.createNewNote);
