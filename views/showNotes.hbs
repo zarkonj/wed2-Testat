@@ -1,26 +1,35 @@
 <html>
-    <h1>Alle Notizen</h1>
-    <a id="create" href="/create">Create new Note</a><br><br>
-    <form method="get">
-        <input type="hidden" id="sortImportanceHidden" name="sortBy" value="importance">
-        <input type="submit" id="sortImportance" value="Sort by Importance">
-    </form>
-    <br>
-    <form method="get">
-        <input type="hidden" id="sortImportanceHidden" name="sortBy" value="doneuntil">
-        <input type="submit" id="sortImportance" value="Sort by Date">
-    </form>
-    <br>
-    <form method="get" action="/hidingNotes">
-        <input type="hidden" name="hideNotes" value="true">
-        <input type="submit" value="Fertige verbergen">
-    </form>
+    <header>
+
+        <form method="get" action="/create">
+            <input type="hidden" id="createNewNoteHidden" name="create" value="create">
+            <input type="submit" id="createNewNote" value="Create Note">
+        </form>
+        <form method="post">
+            <input type="hidden" id="changeStyleHidden" name="changeStyle" value="importance">
+            <input type="submit" id="changeStyle" value="Change Style">
+        </form>
+        <form method="get">
+            <input type="hidden" id="sortImportanceHidden" name="sortBy" value="importance">
+            <input type="submit" id="sortImportance" value="Sort by Importance">
+        </form>
+        <form method="get">
+            <input type="hidden" id="sortImportanceHidden" name="sortBy" value="doneuntil">
+            <input type="submit" id="sortImportance" value="Sort by Date">
+        </form>
+        <form method="get" action="/hidingNotes">
+            <input type="hidden" name="hideNotes" value="true">
+            <input type="submit" value="Fertige verbergen">
+        </form>
+    </header>
+    <main id="main" class="mainView">
     {{#if hide}}
+
         {{#each note}}
             {{#if this.complete}}
             {{else}}
                 <div>
-                    <p>Titel: {{this.title}} </p>
+                    <h2>Titel: {{this.title}} </h2>
                     <textarea rows="4" columns="20">{{this.descr}} </textarea>
                     <p>Wichtigkeit: {{this.importance}} <br></p>
                     <p>Erledigt bis: {{this.doneuntil}} <br></p>
@@ -36,10 +45,11 @@
                 </div>
             {{/if}}
         {{/each}}
+
     {{else}}
         {{#each note}}
             <div>
-                <p>Titel: {{this.title}} </p>
+                <h2>Titel: {{this.title}} </h2>
                 <textarea rows="4" columns="20">{{this.descr}} </textarea>
                 <p>Wichtigkeit: {{this.importance}} <br></p>
                 <p>Erledigt bis: {{this.doneuntil}} <br></p>
@@ -55,4 +65,6 @@
             </div>
         {{/each}}
     {{/if}}
+    </main>
+<footer></footer>
 </html>
