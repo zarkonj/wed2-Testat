@@ -14,18 +14,26 @@ module.exports.saveNote = function (req, res) {
 module.exports.sortNote = function (req, res) {
     switch(req.query.sortBy) {
         case "importance":
+            if(req.query.sortOrder){
+                sortOrderValue = 1;
+            } else{
+                sortOrderValue = -1;
+            }
             store.sortImp(sortOrderValue, function (err, data) {
                     res.render("showNotes.hbs", { note: data, query : req.query });
                 }
             )
-            sortOrderValue *= -1;
             break;
         case "doneuntil":
+            if(req.query.sortOrder){
+                sortOrderValue = 1;
+            } else{
+                sortOrderValue = -1;
+            }
             store.sortDat(sortOrderValue, function (err, data) {
                     res.render("showNotes.hbs", { note: data, query : req.query });
                 }
             )
-            sortOrderValue *= -1;
             break;
         default:
             store.all(
