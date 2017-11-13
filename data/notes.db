@@ -1,10 +1,2 @@
-{"title":"neuerTest3","_id":"8gFovY9GGAH8iKun","descr":"test1","importance":"2","doneuntil":"","complete":"on"}
-{"title":"JanMachnut","descr":"gar nüt","importance":"5","doneuntil":"2017-12-09","_id":"8zjTsNEHxfWqBma5"}
-{"title":"test","descr":"test","importance":"1","doneuntil":"2017-11-01","complete":"on","_id":"Gbu6dIpcvNz7YJEf"}
-{"title":"ZarkoTestetComplete","descr":"ist es gechecked","importance":"3","doneuntil":"2017-11-18","complete":"on","_id":"VpSeaftjB1mMT0g6"}
-{"title":"LidijaIschDieBest","descr":"schwöster uf de Welt","importance":"1","doneuntil":"2018-01-19","_id":"k3nBdcJNXWZZfzVK"}
-{"title":"AleksBest","descr":"Aleks isch de best","importance":"4","doneuntil":"2017-12-14","complete":"on","_id":"q84s115bukFuxnmF"}
-{"title":"ZarkoTestetComplete","descr":"ist ungechecked","importance":"2","doneuntil":"2017-11-10","_id":"rG6njv90DCl2KWbR"}
-{"$$deleted":true,"_id":"8gFovY9GGAH8iKun"}
-{"$$deleted":true,"_id":"Gbu6dIpcvNz7YJEf"}
-{"title":"LidijaIschDieBestGsi","descr":"schwöster uf de Welt","importance":"1","doneuntil":"2018-01-19","_id":"k3nBdcJNXWZZfzVK"}
+{"title":"AleksBest","descr":"Aleks isch de best","importance":"4","doneuntil":"2017-12-14","_id":"q84s115bukFuxnmF"}
+{"title":"Jan ist..","descr":"...scheisse","importance":"1","doneuntil":"2017-11-19","_id":"rG6njv90DCl2KWbR","complete":"on"}

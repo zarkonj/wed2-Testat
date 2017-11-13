@@ -13,4 +13,5 @@ router.get("/showNotes", noteController.sortNote);
 router.get("/editNote", noteController.editNote);
 router.post("/editNote", noteController.updateNote);
 router.get("/deleteNote", noteController.deleteNote);
+router.get("/hidingNotes", noteController.hideNote);
 module.exports = router;

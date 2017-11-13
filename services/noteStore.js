@@ -26,14 +26,14 @@ function publicAll(callback) {
     });
 }
 
-function sortImportance(callback) {
-    db.find({}).sort({importance: 1}).exec(function (err, newDoc) {
+function sortImportance(sortOrder, callback) {
+    db.find({}).sort({importance: sortOrder}).exec(function (err, newDoc) {
         callback(err, newDoc);
     });
 }
 
-function sortDate(callback) {
-    db.find({}).sort({doneuntil: 1}).exec(function (err, newDoc) {
+function sortDate(sortOrder, callback) {
+    db.find({}).sort({doneuntil: sortOrder}).exec(function (err, newDoc) {
         callback(err, newDoc);
     });
 }
@@ -59,4 +59,5 @@ function deleteNote(noteID, callback) {
         callback(err);
     });
 }
+
 module.exports = {add : publicAdd, all : publicAll, sortImp : sortImportance, sortDat : sortDate, read : readNote, update : updateNote, delete : deleteNote};

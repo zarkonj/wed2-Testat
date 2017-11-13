@@ -1,4 +1,5 @@
 var store = require("../services/noteStore.js");
+var sortOrderValue = 1;
 
 module.exports.createNewNote = function (req, res) {
     res.render("note_detail.hbs", { title: "Note Pro - Create New Note"} );
@@ -13,21 +14,23 @@ module.exports.saveNote = function (req, res) {
 module.exports.sortNote = function (req, res) {
     switch(req.query.sortBy) {
         case "importance":
-            store.sortImp( function (err, data) {
-                    res.render("showNotes.hbs", { note: data })
+            store.sortImp(sortOrderValue, function (err, data) {
+                    res.render("showNotes.hbs", { note: data, hide : req.query.hideNotes });
                 }
             )
+            sortOrderValue *= -1;
             break;
         case "doneuntil":
-            store.sortDat( function (err, data) {
-                    res.render("showNotes.hbs", { note: data })
+            store.sortDat(sortOrderValue, function (err, data) {
+                    res.render("showNotes.hbs", { note: data, hide : req.query.hideNotes });
                 }
             )
+            sortOrderValue *= -1;
             break;
         default:
             store.all(
                 function (err, data) {
-                    res.render("showNotes.hbs", { note: data } );
+                    res.render("showNotes.hbs", { note: data, hide : req.query.hideNotes  } );
                 }
             );
             break;
@@ -51,4 +54,12 @@ module.exports.deleteNote = function (req, res) {
     store.delete(req.query.noteID, function (err, data) {
         res.redirect("/showNotes");
     });
+}
+
+module.exports.hideNote = function (req, res) {
+    store.all(
+        function (err, data) {
+            res.render("showNotes.hbs", { note: data, hide: req.query.hideNotes });
+        }
+    )
 }
