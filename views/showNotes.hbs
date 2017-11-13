@@ -19,17 +19,20 @@
             <input type="submit" id="changeStyle" value="Change Style">
         </form>
         <form method="get">
-            <input type="hidden" id="sortImportanceHidden" name="sortBy" value="importance">
+            <input type="hidden" name="sortBy" value="importance">
+            <input type="hidden" name="changeStyle" value="{{query.changeStyle}}">
             <input type="hidden" name="hideNotes" value="{{query.hideNotes}}">
             <input type="submit" id="sortImportance" value="Sort by Importance">
         </form>
         <form method="get">
             <input type="hidden" id="sortImportanceHidden" name="sortBy" value="doneuntil">
+            <input type="hidden" name="changeStyle" value="{{query.changeStyle}}">
             <input type="hidden" name="hideNotes" value="{{query.hideNotes}}">
             <input type="submit" id="sortImportance" value="Sort by Date">
         </form>
         <form method="get">
             <input type="hidden" name="sortBy" value="{{query.sortBy}}">
+            <input type="hidden" name="changeStyle" value="{{query.changeStyle}}">
             <input type="hidden" name="hideNotes" value="{{#if query.hideNotes}}{{else}}true{{/if}}">
             <input type="submit" value="{{#if query.hideNotes}}Fertige wieder zeigen {{else}} Fertige verbergen {{/if}}">
         </form>
