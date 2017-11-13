@@ -15,14 +15,14 @@ module.exports.sortNote = function (req, res) {
     switch(req.query.sortBy) {
         case "importance":
             store.sortImp(sortOrderValue, function (err, data) {
-                    res.render("showNotes.hbs", { note: data, hide : req.query.hideNotes });
+                    res.render("showNotes.hbs", { note: data, query : req.query });
                 }
             )
             sortOrderValue *= -1;
             break;
         case "doneuntil":
             store.sortDat(sortOrderValue, function (err, data) {
-                    res.render("showNotes.hbs", { note: data, hide : req.query.hideNotes });
+                    res.render("showNotes.hbs", { note: data, query : req.query });
                 }
             )
             sortOrderValue *= -1;
@@ -30,7 +30,7 @@ module.exports.sortNote = function (req, res) {
         default:
             store.all(
                 function (err, data) {
-                    res.render("showNotes.hbs", { note: data, hide : req.query.hideNotes  } );
+                    res.render("showNotes.hbs", { note: data, query : req.query  } );
                 }
             );
             break;

@@ -1,0 +1,19 @@
+body {
+    padding: 50px;
+    font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+}
+
+header {
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+
+}
+
+div {
+    background: lightblue;
+    border-style: dotted;
+    border-color: green;
+    margin: 10pt;
+    padding: 10pt;
+}

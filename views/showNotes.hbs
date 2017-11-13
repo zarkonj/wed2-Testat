@@ -1,30 +1,41 @@
 <html>
+<head>
+    {{#if query.changeStyle}}
+        <link rel='stylesheet' href="/stylesheets/style_dark.css" />
+    {{else}}
+        <link rel='stylesheet' href='/stylesheets/style.css' />
+    {{/if}}
+</head>
     <header>
 
         <form method="get" action="/create">
             <input type="hidden" id="createNewNoteHidden" name="create" value="create">
             <input type="submit" id="createNewNote" value="Create Note">
         </form>
-        <form method="post">
-            <input type="hidden" id="changeStyleHidden" name="changeStyle" value="importance">
+        <form method="get">
+            <input type="hidden" id="changeStyleHidden" name="changeStyle" value="{{#if query.changeStyle}}{{else}}true{{/if}}">
+            <input type="hidden" name="hideNotes" value="{{query.hideNotes}}">
+            <input type="hidden" name="sortBy" value="{{query.sortBy}}">
             <input type="submit" id="changeStyle" value="Change Style">
         </form>
         <form method="get">
             <input type="hidden" id="sortImportanceHidden" name="sortBy" value="importance">
+            <input type="hidden" name="hideNotes" value="{{query.hideNotes}}">
             <input type="submit" id="sortImportance" value="Sort by Importance">
         </form>
         <form method="get">
             <input type="hidden" id="sortImportanceHidden" name="sortBy" value="doneuntil">
+            <input type="hidden" name="hideNotes" value="{{query.hideNotes}}">
             <input type="submit" id="sortImportance" value="Sort by Date">
         </form>
-        <form method="get" action="/hidingNotes">
-            <input type="hidden" name="hideNotes" value="true">
-            <input type="submit" value="Fertige verbergen">
+        <form method="get">
+            <input type="hidden" name="sortBy" value="{{query.sortBy}}">
+            <input type="hidden" name="hideNotes" value="{{#if query.hideNotes}}{{else}}true{{/if}}">
+            <input type="submit" value="{{#if query.hideNotes}}Fertige wieder zeigen {{else}} Fertige verbergen {{/if}}">
         </form>
     </header>
     <main id="main" class="mainView">
-    {{#if hide}}
-
+    {{#if query.hideNotes}}
         {{#each note}}
             {{#if this.complete}}
             {{else}}
@@ -33,7 +44,7 @@
                     <textarea rows="4" columns="20">{{this.descr}} </textarea>
                     <p>Wichtigkeit: {{this.importance}} <br></p>
                     <p>Erledigt bis: {{this.doneuntil}} <br></p>
-                    <input type="checkbox" name="complete" {{#if this.complete}} checked {{/if}}> Complete<br><br>
+                    <input type="checkbox" name="complete" disabled="disabled" {{#if this.complete}} checked {{/if}}> Complete<br><br>
                     <form method="get" action="/editNote">
                         <input type="hidden" name="noteID" value="{{this._id}}">
                         <input type="submit" value="Notiz ändern">
@@ -45,7 +56,6 @@
                 </div>
             {{/if}}
         {{/each}}
-
     {{else}}
         {{#each note}}
             <div>
@@ -53,7 +63,7 @@
                 <textarea rows="4" columns="20">{{this.descr}} </textarea>
                 <p>Wichtigkeit: {{this.importance}} <br></p>
                 <p>Erledigt bis: {{this.doneuntil}} <br></p>
-                <input type="checkbox" name="complete" {{#if this.complete}} checked {{/if}}> Complete<br><br>
+                <input type="checkbox" name="complete" disabled="disabled" {{#if this.complete}} checked {{/if}}> Complete<br><br>
                 <form method="get" action="/editNote">
                     <input type="hidden" name="noteID" value="{{this._id}}">
                     <input type="submit" value="Notiz ändern">
