@@ -8,7 +8,6 @@
                 Done until: <input type="date" name="doneuntil" value="{{note.doneuntil}}" required><br><br>
                 <input type="checkbox" name="complete" {{#if note.complete}} checked {{/if}}> Complete<br><br>
                 <input type="submit" value="Update Note">
-                <a href="/showNotes">zurück</a>
             </form>
     {{else}}
         <form method="post">
@@ -18,7 +17,9 @@
             Done until: <input type="date" name="doneuntil" required><br><br>
             <input type="checkbox" name="complete" > Complete<br><br>
             <input type="submit" value="Create Note">
-            <input type="button" id="abort" value="Abort">
         </form>
     {{/if}}
+        <form method="get" action="/">
+            <input type="submit" id="abort" value="Abbrechen">
+        </form>
 </html>
