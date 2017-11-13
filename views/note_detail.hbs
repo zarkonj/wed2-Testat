@@ -2,20 +2,20 @@
 <h1>{{title}}</h1>
     {{#if note}}
             <form method="post">
-                Title: <input type="text" name="title" value="{{note.title}}"><br><br>
-                Description: <input type="text" name="descr" value="{{note.descr}}"><br><br>
-                Importance: <input type="number" name="importance" min="1" max="5" value="{{note.importance}}"><br><br>
-                Done until: <input type="date" name="doneuntil" value="{{note.doneuntil}}"><br><br>
+                Title: <input type="text" name="title" value="{{note.title}}" required><br><br>
+                Description: <input type="text" name="descr" value="{{note.descr}}" required><br><br>
+                Importance: <input type="number" name="importance" min="1" max="5" value="{{note.importance}}" required><br><br>
+                Done until: <input type="date" name="doneuntil" value="{{note.doneuntil}}" required><br><br>
                 <input type="checkbox" name="complete" {{#if note.complete}} checked {{/if}}> Complete<br><br>
                 <input type="submit" value="Update Note">
                 <a href="/showNotes">zurück</a>
             </form>
     {{else}}
         <form method="post">
-            Title: <input type="text" name="title"><br><br>
-            Description: <input type="text" name="descr"><br><br>
-            Importance: <input type="number" name="importance" min="1" max="5"><br><br>
-            Done until: <input type="date" name="doneuntil"><br><br>
+            Title: <input type="text" name="title" required><br><br>
+            Description: <input type="text" name="descr" required><br><br>
+            Importance: <input type="number" name="importance" min="1" max="5" required><br><br>
+            Done until: <input type="date" name="doneuntil" required><br><br>
             <input type="checkbox" name="complete" > Complete<br><br>
             <input type="submit" value="Create Note">
             <input type="button" id="abort" value="Abort">
