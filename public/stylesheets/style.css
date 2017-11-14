@@ -10,9 +10,27 @@ header {
 
 }
 
+h1 {
+  font-family: arial, sans-serif;
+  font-size: 15px;
+}
+form {
+  display: grid;
+  padding: 2px;
+}
+
+
+
+input [type=submit]{
+  border: 1px;
+  border-radius: 5px;
+  padding: 10px;
+}
+
 div {
   background: lightcoral;
-  border-style: dotted;
+  border-style: solid;
+  border-radius: 4px;
   border-color: black;
   margin: 10pt;
   padding: 10pt;

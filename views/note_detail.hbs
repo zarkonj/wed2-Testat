@@ -1,25 +1,34 @@
 <html>
-<h1>{{title}}</h1>
-    {{#if note}}
-            <form method="post">
-                Title: <input type="text" name="title" value="{{note.title}}" required><br><br>
-                Description: <input type="text" name="descr" value="{{note.descr}}" required><br><br>
-                Importance: <input type="number" name="importance" min="1" max="5" value="{{note.importance}}" required><br><br>
-                Done until: <input type="date" name="doneuntil" value="{{note.doneuntil}}" required><br><br>
-                <input type="checkbox" name="complete" {{#if note.complete}} checked {{/if}}> Complete<br><br>
-                <input type="submit" value="Update Note">
-            </form>
+<head>
+    {{#if query.changeStyle}}
+        <link rel='stylesheet' href="/stylesheets/style_dark.css"/>
     {{else}}
-        <form method="post">
-            Title: <input type="text" name="title" required><br><br>
-            Description: <input type="text" name="descr" required><br><br>
-            Importance: <input type="number" name="importance" min="1" max="5" required><br><br>
-            Done until: <input type="date" name="doneuntil" required><br><br>
-            <input type="checkbox" name="complete" > Complete<br><br>
-            <input type="submit" value="Create Note">
-        </form>
+        <link rel='stylesheet' href='/stylesheets/style.css'/>
     {{/if}}
-        <form method="get" action="/">
-            <input type="submit" id="abort" value="Abbrechen">
-        </form>
+</head>
+<body>
+<h1>{{title}}</h1>
+{{#if note}}
+    <form method="post">
+        <label>Title: <input type="text" name="title" value="{{note.title}}" required></label>
+        <label>Description: <input type="text" name="descr" value="{{note.descr}}"></label>
+        <label>Importance: <input type="number" name="importance" min="1" max="5" value="{{note.importance}}" required></label>
+        <label>Done until: <input type="date" name="doneuntil" value="{{note.doneuntil}}" required></label>
+        <input type="checkbox" name="complete" {{#if note.complete}} checked {{/if}}> Complete
+        <input type="submit" value="Update Note">
+    </form>
+{{else}}
+    <form method="post">
+        <label>Title: <input type="text" name="title" required>
+            <label>Description: <input type="text" name="descr"></label>
+            <label>Importance: <input type="number" name="importance" min="1" max="5" required></label>
+            <label>Done until: <input type="date" name="doneuntil" required></label>
+            <input type="checkbox" name="complete"> Complete
+            <input type="submit" value="Create Note">
+    </form>
+{{/if}}
+<form method="get" action="/">
+    <input type="submit" id="abort" value="Abbrechen">
+</form>
+</body>
 </html>
