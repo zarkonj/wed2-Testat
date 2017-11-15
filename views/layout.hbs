@@ -2,7 +2,10 @@
 <html>
   <head>
     <title>{{title}}</title>
-
+      <link rel='stylesheet' href="/stylesheets/style.css"/>
+      {{#if changeStyle}}
+          <link rel='stylesheet' href='/stylesheets/style_dark.css'/>
+      {{/if}}
   </head>
   <body>
     {{{body}}}

@@ -1,57 +1,83 @@
-<html>
-<head>
-    {{#if query.changeStyle}}
-        <link rel='stylesheet' href="/stylesheets/style_dark.css" />
-    {{else}}
-        <link rel='stylesheet' href='/stylesheets/style.css' />
-    {{/if}}
-</head>
-    <header>
-
+<header>
+    <div class="headerMainFunctions">
         <form method="get" action="/create">
-            <input type="hidden" id="createNewNoteHidden" name="create" value="create">
             <input type="submit" id="createNewNote" value="Create Note">
         </form>
         <form method="get">
-            <input type="hidden" id="changeStyleHidden" name="changeStyle" value="{{#if query.changeStyle}}{{else}}true{{/if}}">
+            <input type="hidden" id="changeStyleHidden" name="changeStyle"
+                   value="{{#if changeStyle}}{{else}}true{{/if}}">
             <input type="hidden" name="sortOrder" value="{{query.sortOrder}}">
             <input type="hidden" name="hideNotes" value="{{query.hideNotes}}">
             <input type="hidden" name="sortBy" value="{{query.sortBy}}">
             <input type="submit" id="changeStyle" value="Change Style">
         </form>
+    </div>
+    <div class="headerOrderFunctions">
         <form method="get">
             <input type="hidden" name="sortBy" value="importance">
             <input type="hidden" name="sortOrder" value="{{#if query.sortOrder}}{{else}}true{{/if}}">
-            <input type="hidden" name="changeStyle" value="{{query.changeStyle}}">
+            <input type="hidden" name="changeStyle" value="{{changeStyle}}">
             <input type="hidden" name="hideNotes" value="{{query.hideNotes}}">
             <input type="submit" id="sortImportance" value="Sort by Importance">
         </form>
         <form method="get">
             <input type="hidden" id="sortImportanceHidden" name="sortBy" value="doneuntil">
             <input type="hidden" name="sortOrder" value="{{#if query.sortOrder}}{{else}}true{{/if}}">
-            <input type="hidden" name="changeStyle" value="{{query.changeStyle}}">
+            <input type="hidden" name="changeStyle" value="{{changeStyle}}">
             <input type="hidden" name="hideNotes" value="{{query.hideNotes}}">
             <input type="submit" id="sortImportance" value="Sort by Date">
         </form>
         <form method="get">
             <input type="hidden" name="sortBy" value="{{query.sortBy}}">
             <input type="hidden" name="sortOrder" value="{{query.sortOrder}}">
-            <input type="hidden" name="changeStyle" value="{{query.changeStyle}}">
+            <input type="hidden" name="changeStyle" value="{{changeStyle}}">
             <input type="hidden" name="hideNotes" value="{{#if query.hideNotes}}{{else}}true{{/if}}">
-            <input type="submit" value="{{#if query.hideNotes}}Fertige wieder zeigen {{else}} Fertige verbergen {{/if}}">
+            <input type="submit"
+                   value="{{#if query.hideNotes}}Fertige wieder zeigen {{else}} Fertige verbergen {{/if}}">
         </form>
-    </header>
-    <main id="main" class="mainView">
+    </div>
+</header>
+<main id="main" class="mainView">
     {{#if query.hideNotes}}
-        {{#each note}}
-            {{#if this.complete}}
-            {{else}}
-                <div>
-                    <h2>Titel: {{this.title}} </h2>
-                    <textarea rows="4" columns="20">{{this.descr}} </textarea>
+        {{#if note.length}}
+            {{#each note}}
+                {{#if this.complete}}
+
+                {{else}}
+                    <div class="noteItem">
+                        <h2>{{this.title}} </h2>
+                        <p>{{this.descr}} </p>
+                        <p>Wichtigkeit: {{this.importance}} <br></p>
+                        <p>Erledigt bis: {{this.doneuntil}} <br></p>
+                        <input type="checkbox" name="complete" disabled="disabled" {{#if this.complete}}
+                               checked {{/if}}>
+                        Complete<br><br>
+                        <form method="get" action="/editNote">
+                            <input type="hidden" name="noteID" value="{{this._id}}">
+                            <input type="submit" value="Notiz ändern">
+                        </form>
+                        <form method="get" action="/deleteNote">
+                            <input type="hidden" name="noteID" value="{{this._id}}">
+                            <input type="submit" value="Notiz löschen">
+                        </form>
+                    </div>
+                {{/if}}
+            {{/each}}
+        {{else}}
+            <div class="noNoteData">
+                <p>Keine Notizen anzuzeigen</p>
+            </div>
+        {{/if}}
+    {{else}}
+        {{#if note.length}}
+            {{#each note}}
+                <div class="noteItem">
+                    <h2>{{this.title}} </h2>
+                    <p>{{this.descr}} </p>
                     <p>Wichtigkeit: {{this.importance}} <br></p>
                     <p>Erledigt bis: {{this.doneuntil}} <br></p>
-                    <input type="checkbox" name="complete" disabled="disabled" {{#if this.complete}} checked {{/if}}> Complete<br><br>
+                    <input type="checkbox" name="complete" disabled="disabled" {{#if this.complete}} checked {{/if}}>
+                    Complete<br><br>
                     <form method="get" action="/editNote">
                         <input type="hidden" name="noteID" value="{{this._id}}">
                         <input type="submit" value="Notiz ändern">
@@ -61,27 +87,11 @@
                         <input type="submit" value="Notiz löschen">
                     </form>
                 </div>
-            {{/if}}
-        {{/each}}
-    {{else}}
-        {{#each note}}
-            <div>
-                <h2>Titel: {{this.title}} </h2>
-                <textarea rows="4" columns="20">{{this.descr}} </textarea>
-                <p>Wichtigkeit: {{this.importance}} <br></p>
-                <p>Erledigt bis: {{this.doneuntil}} <br></p>
-                <input type="checkbox" name="complete" disabled="disabled" {{#if this.complete}} checked {{/if}}> Complete<br><br>
-                <form method="get" action="/editNote">
-                    <input type="hidden" name="noteID" value="{{this._id}}">
-                    <input type="submit" value="Notiz ändern">
-                </form>
-                <form method="get" action="/deleteNote">
-                    <input type="hidden" name="noteID" value="{{this._id}}">
-                    <input type="submit" value="Notiz löschen">
-                </form>
+            {{/each}}
+        {{else}}
+            <div class="noNoteData">
+                <p>Keine Notizen anzuzeigen</p>
             </div>
-        {{/each}}
+        {{/if}}
     {{/if}}
-    </main>
-<footer></footer>
-</html>
+</main>

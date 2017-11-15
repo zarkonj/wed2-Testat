@@ -1,34 +1,29 @@
-<html>
-<head>
-    {{#if query.changeStyle}}
-        <link rel='stylesheet' href="/stylesheets/style_dark.css"/>
-    {{else}}
-        <link rel='stylesheet' href='/stylesheets/style.css'/>
-    {{/if}}
-</head>
-<body>
 <h1>{{title}}</h1>
 {{#if note}}
-    <form method="post">
-        <label>Title: <input type="text" name="title" value="{{note.title}}" required></label>
-        <label>Description: <input type="text" name="descr" value="{{note.descr}}"></label>
-        <label>Importance: <input type="number" name="importance" min="1" max="5" value="{{note.importance}}" required></label>
-        <label>Done until: <input type="date" name="doneuntil" value="{{note.doneuntil}}" required></label>
-        <input type="checkbox" name="complete" {{#if note.complete}} checked {{/if}}> Complete
+    <form method="post" class="createNote">
+        <label for="title">Title: </label><input type="text" name="title" value="{{note.title}}" required>
+        <label for="descr"></label><input type="text" name="descr" value="{{note.descr}}">
+        <label for="importance"></label> Importance: <input type="number" name="importance" min="1" max="5"
+                                                            value="{{note.importance}}" required>
+        <label for="doneuntil"></label> until: <input type="date" name="doneuntil" value="{{note.doneuntil}}" required>
+        <div>
+            <input type="checkbox" name="complete" {{#if note.complete}} checked {{/if}}/> <label for="complete">Complete</label>
+        </div>
         <input type="submit" value="Update Note">
     </form>
 {{else}}
-    <form method="post">
-        <label>Title: <input type="text" name="title" required>
-            <label>Description: <input type="text" name="descr"></label>
-            <label>Importance: <input type="number" name="importance" min="1" max="5" required></label>
-            <label>Done until: <input type="date" name="doneuntil" required></label>
-            <input type="checkbox" name="complete"> Complete
-            <input type="submit" value="Create Note">
+    <form method="post" class="createNote">
+        <label for="title">Title:</label> <input type="text" name="title" required>
+        <label for="descr">Description:</label> <input type="text" name="descr">
+        <label for="importance">Importance:</label> <input type="number" name="importance" min="1" max="5" required>
+        <label for="doneuntil">Done until:</label> <input type="date" name="doneuntil" required>
+        <div>
+            <input type="checkbox" name="complete"/> <label for="complete">Complete</label>
+        </div>
+        <input type="submit" value="Create Note">
+
     </form>
 {{/if}}
 <form method="get" action="/">
     <input type="submit" id="abort" value="Abbrechen">
 </form>
-</body>
-</html>

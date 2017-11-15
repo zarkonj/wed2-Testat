@@ -1,19 +1,15 @@
 body {
-    padding: 50px;
-    font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+    background: black;
 }
 
-header {
-    display: flex;
-    justify-content: space-between;
-    flex-wrap: wrap;
-
-}
-
-div {
+.noteItem {
     background: lightblue;
-    border-style: dotted;
-    border-color: green;
+    border: 1pt solid white;
     margin: 10pt;
     padding: 10pt;
+}
+
+.noNoteData {
+    background: lightblue;
+    border-color: green;
 }
