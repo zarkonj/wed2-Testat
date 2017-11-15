@@ -33,7 +33,7 @@
             <input type="hidden" name="changeStyle" value="{{changeStyle}}">
             <input type="hidden" name="hideNotes" value="{{#if query.hideNotes}}{{else}}true{{/if}}">
             <input type="submit"
-                   value="{{#if query.hideNotes}}Fertige wieder zeigen {{else}} Fertige verbergen {{/if}}">
+                   value="{{#if query.hideNotes}}Fertige &nbsp;anzeigen{{else}}Fertige verbergen{{/if}}">
         </form>
     </div>
 </header>
@@ -41,9 +41,6 @@
     {{#if query.hideNotes}}
         {{#if note.length}}
             {{#each note}}
-                {{#if this.complete}}
-
-                {{else}}
                     <div class="noteItem">
                         <h2>{{this.title}} </h2>
                         <p>{{this.descr}} </p>
@@ -61,7 +58,6 @@
                             <input type="submit" value="Notiz löschen">
                         </form>
                     </div>
-                {{/if}}
             {{/each}}
         {{else}}
             <div class="noNoteData">
@@ -90,7 +86,7 @@
             {{/each}}
         {{else}}
             <div class="noNoteData">
-                <p>Keine Notizen anzuzeigen</p>
+                <p>Keine Notizen anzuzeigen!</p>
             </div>
         {{/if}}
     {{/if}}
