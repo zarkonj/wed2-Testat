@@ -18,7 +18,6 @@ module.exports.sortNote = function (req, res) {
         setChangeStyle(req, req.query.changeStyle);
     }
 
-
     switch (req.query.sortBy) {
         case "importance":
             if (req.query.sortOrder) {

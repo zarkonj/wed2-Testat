@@ -1,7 +1,7 @@
 <header>
     <div class="headerMainFunctions">
         <form method="get" action="/create">
-            <input type="submit" id="createNewNote" value="Create Note">
+            <input type="submit" id="createNewNote" value="Neue Notiz">
         </form>
         <form method="get">
             <input type="hidden" id="changeStyleHidden" name="changeStyle"
@@ -9,7 +9,7 @@
             <input type="hidden" name="sortOrder" value="{{query.sortOrder}}">
             <input type="hidden" name="hideNotes" value="{{query.hideNotes}}">
             <input type="hidden" name="sortBy" value="{{query.sortBy}}">
-            <input type="submit" id="changeStyle" value="Change Style">
+            <input type="submit" id="changeStyle" value="Style wechseln">
         </form>
     </div>
     <div class="headerOrderFunctions">
@@ -18,14 +18,14 @@
             <input type="hidden" name="sortOrder" value="{{#if query.sortOrder}}{{else}}true{{/if}}">
             <input type="hidden" name="changeStyle" value="{{changeStyle}}">
             <input type="hidden" name="hideNotes" value="{{query.hideNotes}}">
-            <input type="submit" id="sortImportance" value="Sort by Importance">
+            <input type="submit" id="sortImportance" value="Sort. Wichtigkeit">
         </form>
         <form method="get">
             <input type="hidden" id="sortImportanceHidden" name="sortBy" value="doneuntil">
             <input type="hidden" name="sortOrder" value="{{#if query.sortOrder}}{{else}}true{{/if}}">
             <input type="hidden" name="changeStyle" value="{{changeStyle}}">
             <input type="hidden" name="hideNotes" value="{{query.hideNotes}}">
-            <input type="submit" id="sortImportance" value="Sort by Date">
+            <input type="submit" id="sortImportance" value="Sort. Datum">
         </form>
         <form method="get">
             <input type="hidden" name="sortBy" value="{{query.sortBy}}">
@@ -41,27 +41,30 @@
     {{#if query.hideNotes}}
         {{#if note.length}}
             {{#each note}}
-                    <div class="noteItem">
-                        <h2>{{this.title}} </h2>
-                        <p>{{this.descr}} </p>
-                        <p>Wichtigkeit: {{this.importance}} <br></p>
-                        <p>Erledigt bis: {{this.doneuntil}} <br></p>
+                <div class="noteItem">
+                    <h2>{{this.title}} </h2>
+                    <p>{{this.descr}} </p>
+                    <p>Wichtigkeit: {{this.importance}} <br></p>
+                    <p>Erledigt bis: {{this.doneuntil}} <br></p>
+                    <div class="noteCompletedCheckbox">
                         <input type="checkbox" name="complete" disabled="disabled" {{#if this.complete}}
                                checked {{/if}}>
-                        Complete<br><br>
-                        <form method="get" action="/editNote">
-                            <input type="hidden" name="noteID" value="{{this._id}}">
-                            <input type="submit" value="Notiz ändern">
-                        </form>
-                        <form method="get" action="/deleteNote">
-                            <input type="hidden" name="noteID" value="{{this._id}}">
-                            <input type="submit" value="Notiz löschen">
-                        </form>
+                        Complete
                     </div>
+
+                    <form method="get" action="/editNote">
+                        <input type="hidden" name="noteID" value="{{this._id}}">
+                        <input type="submit" value="Notiz ändern">
+                    </form>
+                    <form method="get" action="/deleteNote">
+                        <input type="hidden" name="noteID" value="{{this._id}}">
+                        <input type="submit" value="Notiz löschen">
+                    </form>
+                </div>
             {{/each}}
         {{else}}
             <div class="noNoteData">
-                <p>Keine Notizen anzuzeigen</p>
+                <p>Keine Notizen vorhanden!</p>
             </div>
         {{/if}}
     {{else}}
@@ -72,9 +75,10 @@
                     <p>{{this.descr}} </p>
                     <p>Wichtigkeit: {{this.importance}} <br></p>
                     <p>Erledigt bis: {{this.doneuntil}} <br></p>
-                    <div>
-                    <input type="checkbox" name="complete" disabled="disabled" {{#if this.complete}} checked {{/if}}>
-                    Complete
+                    <div class="noteCompletedCheckbox">
+                        <input type="checkbox" name="complete" disabled="disabled" {{#if this.complete}}
+                               checked {{/if}}>
+                        Complete
                     </div>
                     <form method="get" action="/editNote">
                         <input type="hidden" name="noteID" value="{{this._id}}">
