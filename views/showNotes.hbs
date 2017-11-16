@@ -72,8 +72,10 @@
                     <p>{{this.descr}} </p>
                     <p>Wichtigkeit: {{this.importance}} <br></p>
                     <p>Erledigt bis: {{this.doneuntil}} <br></p>
+                    <div>
                     <input type="checkbox" name="complete" disabled="disabled" {{#if this.complete}} checked {{/if}}>
-                    Complete<br><br>
+                    Complete
+                    </div>
                     <form method="get" action="/editNote">
                         <input type="hidden" name="noteID" value="{{this._id}}">
                         <input type="submit" value="Notiz ändern">

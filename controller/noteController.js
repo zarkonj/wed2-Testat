@@ -5,16 +5,18 @@ var sortOrderValue = 1;
 
 module.exports.createNewNote = function (req, res) {
     res.render("note_detail.hbs", {title: "Create New Note", changeStyle: getChangeStyle(req)});
-}
+};
 
 module.exports.saveNote = function (req, res) {
     store.add(req.body.title, req.body.descr, req.body.importance, req.body.doneuntil, req.body.complete, function (err, newDoc) {
         res.redirect('/showNotes');
     });
-}
+};
 
 module.exports.sortNote = function (req, res) {
-    setChangeStyle(req, req.query.changeStyle);
+    if(req.query.changeStyle !== undefined) {
+        setChangeStyle(req, req.query.changeStyle);
+    }
 
 
     switch (req.query.sortBy) {
@@ -66,14 +68,14 @@ module.exports.sortNote = function (req, res) {
             );
             break;
     }
-}
+};
 
 module.exports.editNote = function (req, res) {
     store.read(req.query.noteID, function (err, data) {
         res.render("note_detail.hbs", {title: "Change Note", note: data, changeStyle: getChangeStyle(req)});
         console.log(data);
     });
-}
+};
 
 module.exports.updateNote = function (req, res) {
     store.update(req.query.noteID, req.body.title, req.body.descr, req.body.importance, req.body.doneuntil, req.body.complete, function (err, newDoc) {
