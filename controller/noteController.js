@@ -1,7 +1,7 @@
-var express = require('express');
+let express = require('express');
 
-var store = require("../services/noteStore.js");
-var sortOrderValue = 1;
+let store = require("../services/noteStore.js");
+let sortOrderValue = 1;
 
 module.exports.createNewNote = function (req, res) {
     res.render("note_detail.hbs", {title: "Create New Note", changeStyle: getChangeStyle(req)});

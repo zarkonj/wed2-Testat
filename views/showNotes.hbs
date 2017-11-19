@@ -1,4 +1,4 @@
-<header>
+<header class="header">
     <div class="headerMainFunctions">
         <form method="get" action="/create">
             <input type="submit" id="createNewNote" value="Neue Notiz">
@@ -27,7 +27,9 @@
             <input type="hidden" name="hideNotes" value="{{query.hideNotes}}">
             <input type="submit" id="sortImportance" value="Sort. Datum">
         </form>
-        <form method="get">
+    <!--</div>-->
+    <!--<div class="headerHideCompleted">-->
+        <form method="get" id="hideButton">
             <input type="hidden" name="sortBy" value="{{query.sortBy}}">
             <input type="hidden" name="sortOrder" value="{{query.sortOrder}}">
             <input type="hidden" name="changeStyle" value="{{changeStyle}}">
@@ -92,7 +94,7 @@
             {{/each}}
         {{else}}
             <div class="noNoteData">
-                <p>Keine Notizen anzuzeigen!</p>
+                <p>Keine Notizen vorhanden!</p>
             </div>
         {{/if}}
     {{/if}}
