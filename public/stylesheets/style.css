@@ -32,14 +32,21 @@ input {
     border-style: solid;
     border-radius: 4px;
     border-color: black;
-    margin: 10pt;
-    padding: 10pt;
+    margin: 2px;
+    margin-bottom: 5px;
+    padding: 10px;
 }
 
 .noteCompletedCheckbox {
-    margin-bottom: 5pt;
+    margin-bottom: 5px;
 }
 
+.noteItemButtons {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    padding-right: 2px;
+}
 /* Flexbox und Grid Style for Header*/
 .headerMainFunctions {
     width: 100%;
@@ -60,7 +67,7 @@ input {
 }
 
 .noNoteData {
-    border: 1pt solid black;
+    border: 1px solid black;
     border-radius: 4px;
     padding: 10px;
     margin-top: 20px;
@@ -85,10 +92,16 @@ input {
     }
 
     .noteItem h2 {
-        font-size: 12pt;
+        font-size: 12px;
     }
 
     .noteItem p {
-        font-size: 10pt;
+        font-size: 10px;
+    }
+
+    .noteItemButtons {
+        display: flex;
+        flex-direction: column;
+
     }
 }

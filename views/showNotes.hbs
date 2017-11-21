@@ -27,15 +27,15 @@
             <input type="hidden" name="hideNotes" value="{{query.hideNotes}}">
             <input type="submit" id="sortImportance" value="Sort. Datum">
         </form>
-    <!--</div>-->
-    <!--<div class="headerHideCompleted">-->
+        <!--</div>-->
+        <!--<div class="headerHideCompleted">-->
         <form method="get" id="hideButton">
             <input type="hidden" name="sortBy" value="{{query.sortBy}}">
             <input type="hidden" name="sortOrder" value="{{query.sortOrder}}">
             <input type="hidden" name="changeStyle" value="{{changeStyle}}">
             <input type="hidden" name="hideNotes" value="{{#if query.hideNotes}}{{else}}true{{/if}}">
             <input type="submit"
-                   value="{{#if query.hideNotes}}Fertige &nbsp;anzeigen{{else}}Fertige verbergen{{/if}}">
+                   value="{{#if query.hideNotes}}Fertige anzeigen{{else}}Fertige verbergen{{/if}}">
         </form>
     </div>
 </header>
@@ -54,6 +54,7 @@
                         Complete
                     </div>
 
+                <div class="noteItemButtons">
                     <form method="get" action="/editNote">
                         <input type="hidden" name="noteID" value="{{this._id}}">
                         <input type="submit" value="Notiz ändern">
@@ -62,6 +63,7 @@
                         <input type="hidden" name="noteID" value="{{this._id}}">
                         <input type="submit" value="Notiz löschen">
                     </form>
+                </div>
                 </div>
             {{/each}}
         {{else}}
@@ -82,6 +84,8 @@
                                checked {{/if}}>
                         Complete
                     </div>
+
+                <div class="noteItemButtons">
                     <form method="get" action="/editNote">
                         <input type="hidden" name="noteID" value="{{this._id}}">
                         <input type="submit" value="Notiz ändern">
@@ -90,6 +94,7 @@
                         <input type="hidden" name="noteID" value="{{this._id}}">
                         <input type="submit" value="Notiz löschen">
                     </form>
+                </div>
                 </div>
             {{/each}}
         {{else}}

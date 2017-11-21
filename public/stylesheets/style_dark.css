@@ -7,8 +7,6 @@ body {
 .noteItem {
     background: lightblue;
     border: 1pt solid white;
-    margin: 10pt;
-    padding: 10pt;
 }
 
 .noNoteData {
