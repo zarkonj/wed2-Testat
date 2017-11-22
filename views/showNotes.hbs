@@ -46,7 +46,11 @@
                 <div class="noteItem">
                     <h2>{{this.title}} </h2>
                     <p>{{this.descr}} </p>
-                    <p>Wichtigkeit: {{this.importance}} <br></p>
+                    <p>
+                        {{#times this.importance}}
+                            &#26e4; &nbsp;
+                        {{/times}}
+                        <br></p>
                     <p>Erledigt bis: {{this.doneuntil}} <br></p>
                     <div class="noteCompletedCheckbox">
                         <input type="checkbox" name="complete" disabled="disabled" {{#if this.complete}}
@@ -54,16 +58,16 @@
                         Complete
                     </div>
 
-                <div class="noteItemButtons">
-                    <form method="get" action="/editNote">
-                        <input type="hidden" name="noteID" value="{{this._id}}">
-                        <input type="submit" value="Notiz ändern">
-                    </form>
-                    <form method="get" action="/deleteNote">
-                        <input type="hidden" name="noteID" value="{{this._id}}">
-                        <input type="submit" value="Notiz löschen">
-                    </form>
-                </div>
+                    <div class="noteItemButtons">
+                        <form method="get" action="/editNote">
+                            <input type="hidden" name="noteID" value="{{this._id}}">
+                            <input type="submit" value="Notiz ändern">
+                        </form>
+                        <form method="get" action="/deleteNote">
+                            <input type="hidden" name="noteID" value="{{this._id}}">
+                            <input type="submit" value="Notiz löschen">
+                        </form>
+                    </div>
                 </div>
             {{/each}}
         {{else}}
@@ -77,7 +81,11 @@
                 <div class="noteItem">
                     <h2>{{this.title}} </h2>
                     <p>{{this.descr}} </p>
-                    <p>Wichtigkeit: {{this.importance}} <br></p>
+                    <p class="noteItemImportance">
+                        {{#times this.importance}}
+                            &#x26e4; &nbsp;
+                        {{/times}}
+                        <br></p>
                     <p>Erledigt bis: {{this.doneuntil}} <br></p>
                     <div class="noteCompletedCheckbox">
                         <input type="checkbox" name="complete" disabled="disabled" {{#if this.complete}}
@@ -85,16 +93,16 @@
                         Complete
                     </div>
 
-                <div class="noteItemButtons">
-                    <form method="get" action="/editNote">
-                        <input type="hidden" name="noteID" value="{{this._id}}">
-                        <input type="submit" value="Notiz ändern">
-                    </form>
-                    <form method="get" action="/deleteNote">
-                        <input type="hidden" name="noteID" value="{{this._id}}">
-                        <input type="submit" value="Notiz löschen">
-                    </form>
-                </div>
+                    <div class="noteItemButtons">
+                        <form method="get" action="/editNote">
+                            <input type="hidden" name="noteID" value="{{this._id}}">
+                            <input type="submit" value="Notiz ändern">
+                        </form>
+                        <form method="get" action="/deleteNote">
+                            <input type="hidden" name="noteID" value="{{this._id}}">
+                            <input type="submit" value="Notiz löschen">
+                        </form>
+                    </div>
                 </div>
             {{/each}}
         {{else}}

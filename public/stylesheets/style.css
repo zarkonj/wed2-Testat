@@ -45,8 +45,11 @@ input {
     display: flex;
     flex-direction: row;
     justify-content: flex-start;
-    padding-right: 2px;
 }
+.noteItemImportance {
+    font-size: 20px;
+}
+
 /* Flexbox und Grid Style for Header*/
 .headerMainFunctions {
     width: 100%;

@@ -4,12 +4,15 @@ let favicon = require('serve-favicon');
 let logger = require('morgan');
 let cookieParser = require('cookie-parser');
 let bodyParser = require('body-parser');
-let momentjs = require('moment')
+let handlebars = require('hbs');
+let momentjs = require('moment');
 
 let session = require('express-session');
 
 let index = require('./routes/index');
 let users = require('./routes/users');
+
+let handlebarUtil = require('./util/handlebarHelpers.js')
 
 let app = express();
 
@@ -21,6 +24,9 @@ app.set('view engine', 'hbs');
 //app.use(favicon(path.join(__dirname, 'public', 'favicon.ico')));
 app.use(session({secret: 'checkOutThisEpicSecret1234', resave: false, saveUninitialized: true}))
 app.use(logger('dev'));
+
+//register handlebar helper
+handlebars.registerHelper('times', handlebarUtil.times);
 
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
