@@ -1,17 +1,24 @@
-var express = require('express');
-var noteController = require('../controller/noteController');
-var router = express.Router();
+let express = require('express');
+let noteController = require('../controller/noteController');
+let router = express.Router();
 
-/* GET home page. */
-router.get('/', noteController.sortNote, function(req, res, next) {
-  res.render('showNotes', { title: "Note Pro" });
-});
+/* GET home page.
+router.get('/', noteController.sortNote, function (req, res, next) {
+    res.render('showNotes', {title: "Note Pro"});
+});*/
+
+router.get("/", noteController.showNotes);
 
 router.get("/create", noteController.createNewNote);
-router.post("/create", noteController.saveNote);
 router.get("/showNotes", noteController.sortNote);
 router.get("/editNote", noteController.editNote);
-router.post("/editNote", noteController.updateNote);
 router.get("/deleteNote", noteController.deleteNote);
 router.get("/hidingNotes", noteController.hideNote);
+router.get("/changeStyle", noteController.invertChangeStyle);
+router.get("/sort/:order/",noteController.sortNote);
+
+
+router.post("/create", noteController.saveNote);
+router.post("/editNote", noteController.updateNote);
+
 module.exports = router;

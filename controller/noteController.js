@@ -1,7 +1,19 @@
 let express = require('express');
 
 let store = require("../services/noteStore.js");
+let moment = require('moment');
+moment.locale("de");//.format('LLL');
 let sortOrderValue = 1;
+
+
+module.exports.showNotes = function (req, res) {
+    store.all(function (err, notes) {
+        notes = sortNote(req.session.order, notes);
+        notes = setDoneUntil(notes);
+
+        res.render("showNotes", {title: "Note Pro", style: req.session.changeStyle, note: notes})
+    })
+};
 
 module.exports.createNewNote = function (req, res) {
     res.render("note_detail.hbs", {title: "Create New Note", changeStyle: getChangeStyle(req)});
@@ -14,59 +26,58 @@ module.exports.saveNote = function (req, res) {
 };
 
 module.exports.sortNote = function (req, res) {
-    if(req.query.changeStyle !== undefined) {
-        setChangeStyle(req, req.query.changeStyle);
-    }
+    res.redirect('/')
 
-    switch (req.query.sortBy) {
-        case "importance":
-            if (req.query.sortOrder) {
-                sortOrderValue = 1;
-            } else {
-                sortOrderValue = -1;
-            }
-            store.sortImp(sortOrderValue, function (err, data) {
-                    if (req.query.hideNotes) {
-                        data = data.filter(function (obj) {
-                            return (!obj.complete);
-                        })
-                    }
 
-                    res.render("showNotes.hbs", {note: data, query: req.query, changeStyle: getChangeStyle(req)});
+    /*    switch (req.query.sortBy) {
+            case "importance":
+                if (req.query.sortOrder) {
+                    sortOrderValue = 1;
+                } else {
+                    sortOrderValue = -1;
                 }
-            )
-            break;
-        case "doneuntil":
-            if (req.query.sortOrder) {
-                sortOrderValue = 1;
-            } else {
-                sortOrderValue = -1;
-            }
-            store.sortDat(sortOrderValue, function (err, data) {
-                    if (req.query.hideNotes) {
-                        data = data.filter(function (obj) {
-                            return (!obj.complete);
-                        })
-                    }
+                store.sortImp(sortOrderValue, function (err, data) {
+                        if (req.query.hideNotes) {
+                            data = data.filter(function (obj) {
+                                return (!obj.complete);
+                            })
+                        }
 
-                    res.render("showNotes.hbs", {note: data, query: req.query, changeStyle: getChangeStyle(req)});
-                }
-            )
-            break;
-        default:
-            store.all(
-                function (err, data) {
-                    if (req.query.hideNotes) {
-                        data = data.filter(function (obj) {
-                            return (!obj.complete);
-                        })
+                        res.render("showNotes.hbs", {note: data, query: req.query, changeStyle: getChangeStyle(req)});
                     }
-
-                    res.render("showNotes.hbs", {note: data, query: req.query, changeStyle: getChangeStyle(req)});
+                );
+                break;
+            case "doneuntil":
+                if (req.query.sortOrder) {
+                    sortOrderValue = 1;
+                } else {
+                    sortOrderValue = -1;
                 }
-            );
-            break;
-    }
+                store.sortDat(sortOrderValue, function (err, data) {
+                        if (req.query.hideNotes) {
+                            data = data.filter(function (obj) {
+                                return (!obj.complete);
+                            })
+                        }
+
+                        res.render("showNotes.hbs", {note: data, query: req.query, changeStyle: getChangeStyle(req)});
+                    }
+                );
+                break;
+            default:
+                store.all(
+                    function (err, data) {
+                        if (req.query.hideNotes) {
+                            data = data.filter(function (obj) {
+                                return (!obj.complete);
+                            })
+                        }
+
+                        res.render("showNotes.hbs", {note: data, query: req.query, changeStyle: getChangeStyle(req)});
+                    }
+                );
+                break;
+        }*/
 };
 
 module.exports.editNote = function (req, res) {
@@ -96,10 +107,28 @@ module.exports.hideNote = function (req, res) {
     )
 };
 
-function getChangeStyle(request) {
-    return request.session.changeStyle;
+module.exports.invertChangeStyle = function (req, res) {
+    req.session.changeStyle = !req.session.changeStyle;
+    res.redirect('/');
+};
+
+function sortNote(order, notes) {
+    return notes;
 }
 
-function setChangeStyle(request, changeStyle) {
-    request.session.changeStyle = changeStyle;
+function setDoneUntil(notes) {
+    notes.forEach(function (note) {
+        let date = moment(note.doneuntil, "YYYY-MM-DD");
+        note.doneuntil = "";
+        if (moment(date, "YYYY-MM-DD") < moment()) {
+            note.doneuntil = moment(date, "YYYY-MM-DD").toNow();
+        }
+        note.doneuntil = moment(date, "YYYY-MM-DD").fromNow();
+    });
+    return notes;
+}
+
+
+function getChangeStyle(request) {
+    return request.session.changeStyle;
 }

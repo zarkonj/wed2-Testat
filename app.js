@@ -9,11 +9,12 @@ let momentjs = require('moment');
 
 let session = require('express-session');
 
-let index = require('./routes/index');
+let index = require('./routes/index.js');
 
 let handlebarUtil = require('./util/handlebarHelpers.js')
 
 let app = express();
+app.use(session({secret: 'checkOutThisEpicSecret1234', resave: false, saveUninitialized: true}))
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
@@ -21,7 +22,6 @@ app.set('view engine', 'hbs');
 
 // uncomment after placing your favicon in /public
 //app.use(favicon(path.join(__dirname, 'public', 'favicon.ico')));
-app.use(session({secret: 'checkOutThisEpicSecret1234', resave: false, saveUninitialized: true}))
 app.use(logger('dev'));
 
 //register handlebar helper
