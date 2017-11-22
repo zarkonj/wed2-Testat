@@ -10,7 +10,6 @@ let momentjs = require('moment');
 let session = require('express-session');
 
 let index = require('./routes/index');
-let users = require('./routes/users');
 
 let handlebarUtil = require('./util/handlebarHelpers.js')
 
@@ -33,7 +32,6 @@ app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/', index);
-app.use('/users', users);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

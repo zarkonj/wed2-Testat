@@ -48,6 +48,7 @@ input {
 }
 .noteItemImportance {
     font-size: 20px;
+    font-weight: bold;
 }
 
 /* Flexbox und Grid Style for Header*/
