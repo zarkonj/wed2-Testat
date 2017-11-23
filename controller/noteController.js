@@ -1,17 +1,19 @@
 let express = require('express');
-
 let store = require("../services/noteStore.js");
 let moment = require('moment');
-moment.locale("de");//.format('LLL');
-let sortOrderValue = 1;
+moment.locale("de");
+
+let reverseSort = false;
+//let sortOrderValue = 1;
 
 
 module.exports.showNotes = function (req, res) {
     store.all(function (err, notes) {
-        notes = sortNote(req.session.order, notes);
+        notes = sortData(req.session.order, notes);
+        notes = hideNotes(req.session.hideNote, notes);
         notes = setDoneUntil(notes);
 
-        res.render("showNotes", {title: "Note Pro", style: req.session.changeStyle, note: notes})
+        res.render("showNotes", {title: "Note Pro", changeStyle : req.session.changeStyle, note: notes})
     })
 };
 
@@ -21,7 +23,7 @@ module.exports.createNewNote = function (req, res) {
 
 module.exports.saveNote = function (req, res) {
     store.add(req.body.title, req.body.descr, req.body.importance, req.body.doneuntil, req.body.complete, function (err, newDoc) {
-        res.redirect('/showNotes');
+        res.redirect('/');
     });
 };
 
@@ -89,30 +91,68 @@ module.exports.editNote = function (req, res) {
 
 module.exports.updateNote = function (req, res) {
     store.update(req.query.noteID, req.body.title, req.body.descr, req.body.importance, req.body.doneuntil, req.body.complete, function (err, newDoc) {
-        res.redirect('/showNotes');
+        res.redirect('/');
     });
 };
 
 module.exports.deleteNote = function (req, res) {
     store.delete(req.query.noteID, function (err, data) {
-        res.redirect("/showNotes");
+        res.redirect("/");
     });
 };
 
-module.exports.hideNote = function (req, res) {
-    store.all(
-        function (err, data) {
-            res.render("showNotes.hbs", {note: data, hide: req.query.hideNotes});
-        }
-    )
+module.exports.invertHideNote = function (req, res) {
+    req.session.hideNote = !req.session.hideNote;
+    res.redirect('/');
+
+
 };
 
 module.exports.invertChangeStyle = function (req, res) {
+    if(req.session.changeStyle === undefined) {req.session.changeStyle = false;}
     req.session.changeStyle = !req.session.changeStyle;
     res.redirect('/');
 };
 
-function sortNote(order, notes) {
+module.exports.sortNotes = function (req, res) {
+    if (req.params.order) {
+        if (req.params.order === req.session.order) {
+            reverseSort = !reverseSort;
+        } else {
+            reverseSort = false;
+            req.session.order = req.params.order;
+        }
+    } else {
+        req.session.order = "doneuntil";
+    }
+    res.redirect('/');
+};
+
+function sortData(order, notes) {
+    switch (order) {
+        case 'importance' :
+            notes.sort(function (note1, note2) {
+                return sortOrder(note1.importance, note2.importance);
+            });
+            break;
+        case 'doneuntil':
+
+            break;
+    }
+    return notes;
+}
+
+
+function sortOrder(val1, val2) {
+    if (reverseSort) {
+        return val1 > val2 ? -1 : 1;
+    } else {
+        return val1 > val2 ? 1 : -1;
+    }
+}
+
+
+function hideNotes(hideNote, notes) {
     return notes;
 }
 

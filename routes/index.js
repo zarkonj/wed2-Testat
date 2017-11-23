@@ -13,9 +13,9 @@ router.get("/create", noteController.createNewNote);
 router.get("/showNotes", noteController.sortNote);
 router.get("/editNote", noteController.editNote);
 router.get("/deleteNote", noteController.deleteNote);
-router.get("/hidingNotes", noteController.hideNote);
+router.get("/hideNotes", noteController.invertHideNote);
 router.get("/changeStyle", noteController.invertChangeStyle);
-router.get("/sort/:order/",noteController.sortNote);
+router.get("/sort/:order/",noteController.sortNotes);
 
 
 router.post("/create", noteController.saveNote);

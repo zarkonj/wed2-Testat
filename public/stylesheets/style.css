@@ -1,7 +1,7 @@
 body {
     padding: 10px;
     font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
-    background-color: beige;
+    background-color: white;
 }
 
 .header {
@@ -23,12 +23,13 @@ input {
     border: 1px;
     border-radius: 5px;
     padding: 10px;
+    background-color: lightgrey;
 }
 
 .noteItem {
     display: flex;
     flex-direction: column;
-    background: lightcoral;
+    background: beige;
     border-style: solid;
     border-radius: 4px;
     border-color: black;
