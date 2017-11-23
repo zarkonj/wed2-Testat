@@ -26,6 +26,16 @@ input {
     padding: 10px;
     background-color: lightgrey;
     margin: 1px;
+
+}
+
+input[type="submit"] {
+    min-width: 150px;
+
+}
+
+input[type="checkbox"] {
+    margin-bottom: 10px;
 }
 
 .noteItemImportance {
@@ -77,18 +87,6 @@ input {
     justify-content: flex-start;
 }
 
-
-/* Flexbox Style für NoteDetail
-.createNote {
-    display: flex;
-    flex-direction: column;
-    width: 100%;
-}
-#abortButton {
-    justify-self: end;
-}*/
-
-
 /* Flexbox und Grid Style for Header*/
 .headerMainFunctions {
     width: 100%;
@@ -99,7 +97,7 @@ input {
 .headerOrderFunctions {
     width: 100%;
     display: grid;
-    grid-template-columns: 120px 120px auto;
+    grid-template-columns: auto auto 1fr auto;
     grid-template-rows: 100%;
     justify-self: start;
 
