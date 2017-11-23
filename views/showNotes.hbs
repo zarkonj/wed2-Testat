@@ -24,19 +24,24 @@
     {{#if note}}
         {{#each note}}
             <div class="noteItem">
-                <h2>{{this.title}} </h2>
-                <p>{{this.descr}} </p>
-                <p class="noteItemImportance">
-                    {{#times this.importance}}
-                        &#x26e4; &nbsp;
-                    {{/times}}
-                    <br></p>
-                <p>{{doneuntil}} <br></p>
-                <div class="noteCompletedCheckbox">
-                    <input type="checkbox" name="complete" disabled="disabled" {{#if this.complete}}
-                           checked {{/if}}>
-                    Complete
+                <div class="noteHeader">
+                    <h2 class="noteTitle">
+
+                        {{#if this.complete}}
+                            &#x2611;
+                        {{else}}
+                            &#x2610;
+                        {{/if}}
+                        {{this.title}} </h2>
+
+                    <p class="noteItemImportance">
+                        {{#times this.importance}}
+                            &#x26e4; &nbsp;
+                        {{/times}}
+                    </p>
                 </div>
+                <p class="noteDescription">{{this.descr}} </p>
+                <p class="noteDoneUntil">{{doneuntil}} <br></p>
 
                 <div class="noteItemButtons">
                     <form method="get" action="/editNote">

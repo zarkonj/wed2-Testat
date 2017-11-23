@@ -1,6 +1,3 @@
-{"title":"asdfasf","descr":"asd","importance":"5","doneuntil":"2017-11-24","_id":"3gL2GzQraI2EzglN"}
-{"title":"note2","descr":"descrnote2","importance":"2","doneuntil":"2018-02-23","_id":"ly8ZZqHA5uhA88DH"}
-{"title":"test","descr":"asdf","importance":"2","doneuntil":"2018-01-15","_id":"oHOsBsjoMjuGskBV"}
-{"title":"Note1","descr":"beschrNote1","importance":"1","doneuntil":"2016-12-12","_id":"ujaBJRQuQnv7nB4d"}
-{"title":"Note1","descr":"beschrNote1","importance":"1","doneuntil":"2016-12-12","_id":"ujaBJRQuQnv7nB4d","complete":"on"}
-{"title":"test","descr":"asdf","importance":"2","doneuntil":"2018-01-15","_id":"oHOsBsjoMjuGskBV","complete":"on"}
+{"title":"test2","descr":"beschreibung2","importance":"2","doneuntil":"2018-01-01","_id":"ErOelYcs48T554zO"}
+{"title":"Test","descr":"test1","importance":"1","doneuntil":"2017-12-11","_id":"UaABrj9blokl9MDf"}
+{"title":"Test","descr":"test1","importance":"1","doneuntil":"2017-12-11","_id":"UaABrj9blokl9MDf","complete":"on"}

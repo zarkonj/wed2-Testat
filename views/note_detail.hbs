@@ -7,7 +7,7 @@
                                                             value="{{note.importance}}" required>
         <label for="doneuntil"></label>Erledigen bis<input type="date" name="doneuntil" value="{{note.doneuntil}}" required>
         <div>
-            <input type="checkbox" name="complete" {{#if note.complete}} checked {{/if}}/> <label for="complete">Complete</label>
+            <input type="checkbox" name="complete" {{#if note.complete}} checked {{/if}}/> <label for="complete">Erledigt</label>
         </div>
         <input type="submit" value="Update Note">
     </form>
@@ -18,12 +18,12 @@
         <label for="importance">Wichtigkeit</label> <input type="number" name="importance" min="1" max="5" required>
         <label for="doneuntil">Erledigen bis</label> <input type="date" name="doneuntil" required>
         <div>
-            <input type="checkbox" name="complete"/> <label for="complete">Complete</label>
+            <input type="checkbox" name="complete"/> <label for="complete">Erledigt</label>
         </div>
         <input type="submit" value="Notiz erstellen">
 
     </form>
 {{/if}}
-<form method="get" action="/">
+<form method="get" action="/" id="abortButton">
     <input type="submit" id="abort" value="Abbrechen">
 </form>

@@ -10,12 +10,17 @@ module.exports.showNotes = function (req, res) {
         notes = sortData(req.session.order, notes);
         notes = hideNotes(req.session.hideNote, notes);
         notes = setDoneUntil(notes);
-        res.render("showNotes", {title: "Note Pro",hideNote : req.session.hideNote, changeStyle : req.session.changeStyle, note: notes})
+        res.render("showNotes", {
+            title: "Note Pro",
+            hideNote: req.session.hideNote,
+            changeStyle: req.session.changeStyle,
+            note: notes
+        })
     })
 };
 
 module.exports.createNewNote = function (req, res) {
-    res.render("note_detail.hbs", {title: "Create New Note", changeStyle: getChangeStyle(req)});
+    res.render("note_detail.hbs", {title: "Neue Notiz erstellen", changeStyle: getChangeStyle(req)});
 };
 
 module.exports.saveNote = function (req, res) {
@@ -26,7 +31,7 @@ module.exports.saveNote = function (req, res) {
 
 module.exports.editNote = function (req, res) {
     store.read(req.query.noteID, function (err, data) {
-        res.render("note_detail.hbs", {title: "Change Note", note: data, changeStyle: getChangeStyle(req)});
+        res.render("note_detail.hbs", {title: "Notiz ändern", note: data, changeStyle: getChangeStyle(req)});
         console.log(data);
     });
 };
@@ -49,7 +54,6 @@ module.exports.invertHideNote = function (req, res) {
 };
 
 module.exports.invertChangeStyle = function (req, res) {
-    //if(req.session.changeStyle === undefined) {req.session.changeStyle = false;}
     req.session.changeStyle = !req.session.changeStyle;
     res.redirect('/');
 };
@@ -76,14 +80,13 @@ function sortData(order, notes) {
             });
             break;
         case 'doneuntil':
-            notes.sort(function(note1, note2) {
+            notes.sort(function (note1, note2) {
                 return sortOrder(moment(note1.doneuntil, "YYYY-MM-DD"), moment(note2.doneuntil, "YYYY-MM-DD"));
             });
             break;
     }
     return notes;
 }
-
 
 function sortOrder(val1, val2) {
     if (reverseSort) {
@@ -93,10 +96,9 @@ function sortOrder(val1, val2) {
     }
 }
 
-
 function hideNotes(hideNote, notes) {
-    if(hideNote){
-        notes = notes.filter(function(note){
+    if (hideNote) {
+        notes = notes.filter(function (note) {
             return !note.complete;
         })
     }
@@ -114,7 +116,6 @@ function setDoneUntil(notes) {
     });
     return notes;
 }
-
 
 function getChangeStyle(request) {
     return request.session.changeStyle;

@@ -12,6 +12,7 @@ body {
 
 h1 {
     font-size: 15px;
+    border-bottom: solid;
 }
 
 form {
@@ -24,11 +25,35 @@ input {
     border-radius: 5px;
     padding: 10px;
     background-color: lightgrey;
+    margin: 1px;
 }
 
+.noteItemImportance {
+    font-size: 15px;
+    font-weight: bold;
+    color: orange;
+    margin-bottom: 0;
+    margin-top: 0;
+}
+
+.noteDescription {
+    font-style: italic;
+}
+
+.noteDoneUntil {
+    font-size: 8px;
+}
+
+.noteTitle {
+    margin-top: 0;
+    margin-bottom: 0;
+}
+
+/* Flexbox Style für ShowNotes */
 .noteItem {
     display: flex;
     flex-direction: column;
+    flex-wrap: wrap;
     background: beige;
     border-style: solid;
     border-radius: 4px;
@@ -41,16 +66,28 @@ input {
 .noteCompletedCheckbox {
     margin-bottom: 5px;
 }
-
-.noteItemButtons {
+.noteHeader{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+.noteItemButtons{
     display: flex;
     flex-direction: row;
     justify-content: flex-start;
 }
-.noteItemImportance {
-    font-size: 20px;
-    font-weight: bold;
+
+
+/* Flexbox Style für NoteDetail
+.createNote {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
 }
+#abortButton {
+    justify-self: end;
+}*/
+
 
 /* Flexbox und Grid Style for Header*/
 .headerMainFunctions {
@@ -65,6 +102,7 @@ input {
     grid-template-columns: 120px 120px auto;
     grid-template-rows: 100%;
     justify-self: start;
+
 }
 
 #hideButton {
@@ -76,10 +114,14 @@ input {
     border-radius: 4px;
     padding: 10px;
     margin-top: 20px;
-    background: lightcoral;
+    background: lightpink;
 }
 
 @media (max-width: 415px) {
+    input {
+        font-size: 11px;
+    }
+
     .headerMainFunctions {
         flex-direction: column;
         flex: 1 100%;
