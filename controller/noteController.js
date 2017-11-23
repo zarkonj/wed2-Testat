@@ -136,7 +136,9 @@ function sortData(order, notes) {
             });
             break;
         case 'doneuntil':
-
+            notes.sort(function(note1, note2) {
+                return sortOrder(moment(note1.doneuntil, "YYYY-MM-DD"), moment(note2.doneuntil, "YYYY-MM-DD"));
+            });
             break;
     }
     return notes;
